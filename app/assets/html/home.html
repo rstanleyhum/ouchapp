@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.5">
+<title>Home</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+</head>
+<body class="article">
+<div id="content">
+<div class="sect1">
+<h2 id="_home">Home</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="hybrid://before_calling_consult">Before Calling a Consult</a><br>
+<a href="hybrid://assessment_tools">Pain Assessment Tools</a><br>
+<a href="hybrid://drugs_basic_principles">Drugs</a><br>
+<a href="hybrid://adverse_drug_effects">Adverse Drug Effects</a><br>
+<a href="hybrid://pca_pearls">PCA Pearls</a></p>
+<p><br/><br/>
+<a href="hybrid://about">About PainApp</a></p>
+</div>
+</div>
+</div>
+</div>
+<script>
+    document.querySelector("body.article").addEventListener("click", doSomething, false);
+    
+    function doSomething(e) {
+        var clickedItem = e.target.href;
+        window.postMessage(clickedItem);
+        e.preventDefault();
+        return false;
+    }
+
+</script>
+</body>
+</html>
