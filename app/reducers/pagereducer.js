@@ -1,25 +1,31 @@
 'use strict';
 
-import Pages from '../config/assets';
+import Pages, { CssStylesheet } from '../config/assets';
 import { PUSH_PAGE, POP_PAGE, PUSH_WEB_PAGE } from '../actions/page';
 
 const initialState = {
     history: ['disclaimer'],
-    sourceUrl: Pages['disclaimer'],
+    sourceUrl: { html: _addCss(Pages['disclaimer'].file, CssStylesheet.css) },
     activeButton: false,
     title: 'disclaimer'
+}
+
+function _addCss(html, css) {
+    var n = html.indexOf("</head>");
+    return [html.slice(0, n), '<style type="text/css">', CssStylesheet.css, "</style>", html.slice(n)].join('');
 }
 
 function PageReducer(state = initialState, action) {
     switch(action.type) {
         case PUSH_PAGE:
             var newLength = state.history.length+1;
+            var source = { html: _addCss(Pages[action.id].file, CssStylesheet.css) }
             return Object.assign({}, state, {
                 history: [
                     ...state.history,
                     action.id
                 ],
-                sourceUrl: Pages[action.id],
+                sourceUrl: source,
                 activeButton: (newLength>2),
                 title: action.id
             });
@@ -39,7 +45,7 @@ function PageReducer(state = initialState, action) {
                 sourceUrl = {uri: prevId};
                 title = "";
             } else {
-                sourceUrl = Pages[prevId];
+                sourceUrl = { html: _addCss(Pages[prevId].file, CssStylesheet.css) }
                 title = prevId;
             }
 
@@ -56,7 +62,7 @@ function PageReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 history: [
                     ...state.history,
-                    action.sourceUrl
+                    action.url
                 ],
                 sourceUrl: {uri: action.url},
                 activeButton: (newLength>2),
