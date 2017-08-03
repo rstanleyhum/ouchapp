@@ -7,6 +7,7 @@ import MainWebView from '../components/mainwebview';
 
 
 const mapStateToProps = (state) => {
+    console.log("LOG: " + state.history[state.history.length-1]);
     return {
         source: state.sourceUrl
     }
