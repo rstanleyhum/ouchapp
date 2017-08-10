@@ -15,6 +15,7 @@ export default class MainWebView extends React.Component {
                 style={{flex: 1}}
                 source={this.props.source}
                 onMessage={e => {this.props.onMessage(e);}}
+                onLoadEnd={ () => {this.props.logUrl(this.props.url);}}
             />
         );
     }
