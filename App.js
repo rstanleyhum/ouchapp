@@ -1,7 +1,10 @@
 'use strict';
 import React from 'react';
 import { AppState } from 'react-native';
+<<<<<<< HEAD
 import Expo, { AppLoading } from 'expo';
+=======
+>>>>>>> tracking
 
 import { Provider } from 'react-redux';
 
@@ -19,6 +22,7 @@ import { downloadSurvey, viewQuestions, deleteAllQuestions, resetSkipSurvey, upl
 
 export default class App extends React.Component {
   state = {
+<<<<<<< HEAD
     isReady: false,
     appState: AppState.currentState
   };
@@ -26,6 +30,14 @@ export default class App extends React.Component {
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     store.dispatch(logInfo("App", "componentDidMount"))
+=======
+    appState: AppState.currentState
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+    console.log("LOG: App DidMount");
+>>>>>>> tracking
   }
 
   componentWillUnmount() {
@@ -33,6 +45,7 @@ export default class App extends React.Component {
   }
 
   _handleAppStateChange = (nextAppState) => {
+<<<<<<< HEAD
     store.dispatch(logInfo("App", "State Change: " + nextAppState));
     this.setState({appState: nextAppState});
   }
@@ -57,6 +70,12 @@ export default class App extends React.Component {
       });
   }
 
+=======
+    console.log("LOG: " + nextAppState);
+    this.setState({appState: nextAppState});
+  }
+
+>>>>>>> tracking
   render() {
     if(!this.state.isReady) {
       return <AppLoading />;
