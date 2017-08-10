@@ -1,10 +1,7 @@
 'use strict';
 import React from 'react';
 import { AppState } from 'react-native';
-<<<<<<< HEAD
 import Expo, { AppLoading } from 'expo';
-=======
->>>>>>> tracking
 
 import { Provider } from 'react-redux';
 
