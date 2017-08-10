@@ -8,7 +8,7 @@ import MainWebView from '../components/mainwebview';
 
 const mapStateToProps = (state) => {
     return {
-        source: state.sourceUrl
+        source: state.ouchapp.sourceUrl
     }
 }
 
