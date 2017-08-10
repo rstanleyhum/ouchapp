@@ -45,15 +45,20 @@ export function downloadSurvey(immediate = false) {
         dispatch(downloadingSurvey(true));
 
         Download(immediate)
-            .then( (new_questions) => {
-                dispatch(downloadingSurvey(false));
-                if (new_questions) {
-                    dispatch(hasNewQuestions(true));
-                } else {
-                    dispatch(hasNewQuestions(false));
+            .then( 
+                (new_questions) => {
+                    dispatch(downloadingSurvey(false));
+                    if (new_questions) {
+                        dispatch(hasNewQuestions(true));
+                    } else {
+                        dispatch(hasNewQuestions(false));
+                    }
+                    dispatch(viewQuestions());
+                },
+                (reason) => {
+                    dispatch(viewQuestions());
                 }
-                dispatch(viewQuestions());
-            })
+            )
             .catch( (err) => {
                 dispatch(logError("downloadSurvey", err));
                 dispatch(downloadingSurvey(false));
