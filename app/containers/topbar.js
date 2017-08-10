@@ -7,8 +7,8 @@ import StatusBar from '../components/statusbar';
 
 const mapStateToProps = (state) => {
     return {
-        enableButton: state.activeButton,
-        text: state.title
+        enableButton: state.ouchapp.activeButton,
+        text: state.ouchapp.title
     }
 }
 
