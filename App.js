@@ -11,7 +11,7 @@ import Main from './app/components/main';
 
 import { SetupLocalDB } from './app/survalytics/services/localdb';
 import { SetupNetInfo } from './app/survalytics/services/network';
-import { SetUserGUID } from './app/survalytics/services/response';
+import { GetUserGUID } from './app/survalytics/services/appstorage';
 import { logInfo, logError } from './app/survalytics/actions/logging';
 
 import { downloadSurvey, viewQuestions, deleteAllQuestions, resetSkipSurvey, uploadResponses } from './app/survalytics/actions/survey';
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
-    store.dispatch(logInfo("App", "App componentDidMount"));
+    store.dispatch(logInfo("App", "App componentDidMount Initial Start of App"));
   }
 
   componentWillUnmount() {
@@ -42,7 +42,7 @@ export default class App extends React.Component {
   }
 
   setup() {
-    Promise.all([SetupLocalDB(), SetupNetInfo(), SetUserGUID()])
+    Promise.all([SetupLocalDB(), SetupNetInfo(), GetUserGUID()])
       .then(results => {
         
         this.setState({isReady: true});

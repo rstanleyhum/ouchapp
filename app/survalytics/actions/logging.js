@@ -15,10 +15,12 @@ export function logError(functionName, errorMsg) {
         var response_json = {
             functionName: functionName,
             logType: LOG_TYPE_ERROR,
-            msg: errorMsg
+            msg: errorMsg,
+            eventTime: Date.now(),
+            entrytype_str: "logging"
         }
 
-        NewResponse(null, response_json, 0)
+        return NewResponse(null, response_json, 0)
             .then( (r) => {
                 return InsertResponse(r);
             })
@@ -33,10 +35,12 @@ export function logInfo(functionName, infoMsg) {
         var response_json = {
             functionName: functionName,
             logType: LOG_TYPE_INFO,
-            msg: infoMsg
+            msg: infoMsg,
+            eventTime: Date.now(),
+            entrytype_str: "logging"
         }
 
-        NewResponse(null, response_json, 0)
+        return NewResponse(null, response_json, 0)
             .then( (r) => {
                 return InsertResponse(r);
             })
