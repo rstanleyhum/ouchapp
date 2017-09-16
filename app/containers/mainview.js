@@ -2,10 +2,8 @@
 
 import { connect } from 'react-redux';
 
-import { pushPage, pushWebPage } from '../actions/page';
+import { pushPageAndLog, pushWebPageAndLog } from '../actions/page';
 import MainWebView from '../components/mainwebview';
-
-import { logInfo } from '../survalytics/actions/logging';
 
 
 const mapStateToProps = (state) => {
@@ -22,16 +20,13 @@ const mapDispatchToProps = (dispatch) => {
 
             if (url.startsWith("hybrid://")) {
                 var baseUrl = url.slice(9, url.length);
-                dispatch(pushPage(baseUrl));
+                dispatch(pushPageAndLog(baseUrl));
             }
 
             if (url.startsWith("http")) {
-                dispatch(pushWebPage(url));
+                dispatch(pushWebPageAndLog(url));
             }
         },
-        logUrl: (url) => {
-            dispatch(logInfo("ViewPage", url));
-        }
     }
 }
 

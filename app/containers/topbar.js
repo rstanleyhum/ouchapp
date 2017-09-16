@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 
-import { popPage } from '../actions/page';
+import { popPageAndLog } from '../actions/page';
 import StatusBar from '../components/statusbar';
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onButtonClick: () => {
-            dispatch(popPage())
+            dispatch(popPageAndLog())
         }
     }
 }
