@@ -20,8 +20,6 @@ export function logError(functionName, errorMsg) {
             entrytype_str: "logging"
         }
 
-        console.log(response_json);
-
         return NewResponse(null, response_json, 0)
             .then( (r) => {
                 return InsertResponse(r);
@@ -41,8 +39,6 @@ export function logInfo(functionName, infoMsg) {
             eventTime: Date.now(),
             entrytype_str: "logging"
         }
-
-        console.log(response_json);
 
         return NewResponse(null, response_json, 0)
             .then( (r) => {
