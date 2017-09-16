@@ -1,5 +1,5 @@
 Ouchapp
 =======
 
-Current Release: 0.1
+Current Release: 0.1.2
 
