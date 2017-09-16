@@ -13,7 +13,7 @@ async function GetUserGUID() {
         if (guid !== null) {
             return guid;
         }
-        var newguid = uuid4();
+        var newguid = uuidv4();
         await AsyncStorage.setItem(USERGUID_KEY, newguid);
         return newguid;
     } catch (error) {
