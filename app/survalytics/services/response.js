@@ -1,10 +1,11 @@
 'use strict';
 import { AsyncStorage } from 'react-native';
 
-const uuidv4 = require('uuid/v4');
 
 import { GetDeviceInfo, GetLocalInfo } from './device';
 import { APPLICATION_VERSION, APPLICATION_NAMESPACE } from '../config/constants';
+
+import { GetUserGUID } from './appstorage';
 
 
 export const NewResponse = (id, json, uploaded) => {
@@ -74,10 +75,10 @@ export const CloneResponse = (r) => {
 
 const _addHeader = async (json) => {
     var p = new Promise( (resolve, reject) => {
-        Promise.all([AsyncStorage.getItem('@UserGUID_Str'), GetLocalInfo(), GetDeviceInfo()])
+        Promise.all([GetUserGUID(), GetLocalInfo(), GetDeviceInfo()])
             .then((data) => {
                 var result = JSON.parse(JSON.stringify(json));
-                result.userguid_str = data[0] || "UNDEFINED";
+                result.userguid_str = data[0];
                 result.application_version = APPLICATION_VERSION;
                 result.application_namespace_str = APPLICATION_NAMESPACE;
                 var newresult = Object.assign({}, result, data[1], data[2]);
@@ -90,24 +91,3 @@ const _addHeader = async (json) => {
     });
     return p;
 };
-
-
-export const SetUserGUID = () => {
-    var p = new Promise( (resolve, reject) => {
-        AsyncStorage.getItem('@UserGUID_Str')
-            .then( (data) => {
-                if (data) {
-                    resolve(true)
-                }
-
-                return AsyncStorage.setItem('@UserGUID_Str', uuidv4());
-            })
-            .then( () => {
-                resolve(true);
-            })
-            .catch( (err) => {
-                reject(err);
-            });
-    });
-    return p;
-}
